@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback} from 'react';
 import { db } from "./firebase-config";
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import './App.css';
@@ -78,14 +78,14 @@ function App() {
       });
   };
 
-  const getUsers = async () => {
+  const getUsers = useCallback(async () => {
     const data = await getDocs(userCollectionRef);
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+  }, [userCollectionRef]);
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [getUsers]); // Now getUsers is in the dependency array
 
   return (
     <div className="App">
