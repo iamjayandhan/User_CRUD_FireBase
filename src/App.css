@@ -127,3 +127,7 @@ h1 {
   margin-bottom: 20px;
   text-align: center; /* Center-align the heading */
 }
+.user-container{
+  display:flex;
+  padding:10px;
+}
