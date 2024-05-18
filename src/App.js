@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { db } from "./firebase-config";
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import './App.css';
@@ -90,92 +90,93 @@ function App() {
   return (
     <div className="App">
       <h1>User CRUD Management</h1>
-      <div className="input-container">
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          type="text"
-          value={newName}
-          onChange={(event) => setNewName(event.target.value)}
-        />
-        <label htmlFor="age">Age:</label>
-        <input
-          id="age"
-          type="number"
-          value={newAge}
-          onChange={(event) => setNewAge(event.target.value)}
-        />
-        <label htmlFor="role">Role:</label>
-        <input
-          id="role"
-          type="text"
-          value={newRole}
-          onChange={(event) => setNewRole(event.target.value)}
-        />
-        <label htmlFor="description">Description:</label>
-        <input
-          id="description"
-          type="text"
-          value={newDescription}
-          onChange={(event) => setNewDescription(event.target.value)}
-        />
-        <button onClick={createUser}>Create User</button>
-      </div>
-      <div className="user-container">
-        {users.map((user) => (
-          <div className="user-card" key={user.id}>
-            {editUserId === user.id ? (
-              <div className="user-info">
-                <input
-                  type="text"
-                  value={editName}
-                  onChange={(event) => setEditName(event.target.value)}
-                />
-                <input
-                  type="number"
-                  value={editAge}
-                  onChange={(event) => setEditAge(event.target.value)}
-                />
-                <input
-                  type="text"
-                  value={editRole}
-                  onChange={(event) => setEditRole(event.target.value)}
-                />
-                <input
-                  type="text"
-                  value={editDescription}
-                  onChange={(event) => setEditDescription(event.target.value)}
-                />
-                <button onClick={() => saveEditedUser(user.id)}>Save</button>
-                <button onClick={cancelEdit}>Cancel</button>
-              </div>
-            ) : (
-              <div className="user-info">
-                <div><strong>Name:</strong> {user.Name}</div>
-                <div><strong>Age:</strong> {user.Age}</div>
-                <div><strong>Role:</strong> {user.Role}</div>
-                <div><strong>Description:</strong> {user.Description}</div>
-              </div>
-              
-            )}
-            <div className="user-buttons">
-              <button className="increase-age-button" onClick={() => updateUser(user.id, user.Age)}>
-                Increase Age
-              </button>
-              {editUserId !== user.id && (
-                <button className="edit-user-button" onClick={() => editUser(user.id)}>
-                  Edit User
-                </button>
+      <div className="main-container">
+        <div className="input-container">
+          <label htmlFor="name">Name:</label>
+          <input
+            id="name"
+            type="text"
+            value={newName}
+            onChange={(event) => setNewName(event.target.value)}
+          />
+          <label htmlFor="age">Age:</label>
+          <input
+            id="age"
+            type="number"
+            value={newAge}
+            onChange={(event) => setNewAge(event.target.value)}
+          />
+          <label htmlFor="role">Role:</label>
+          <input
+            id="role"
+            type="text"
+            value={newRole}
+            onChange={(event) => setNewRole(event.target.value)}
+          />
+          <label htmlFor="description">Description:</label>
+          <input
+            id="description"
+            type="text"
+            value={newDescription}
+            onChange={(event) => setNewDescription(event.target.value)}
+          />
+          <button onClick={createUser}>Create User</button>
+        </div>
+        <div className="user-container">
+          {users.map((user) => (
+            <div className="user-card" key={user.id}>
+              {editUserId === user.id ? (
+                <div className="user-info">
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={(event) => setEditName(event.target.value)}
+                  />
+                  <input
+                    type="number"
+                    value={editAge}
+                    onChange={(event) => setEditAge(event.target.value)}
+                  />
+                  <input
+                    type="text"
+                    value={editRole}
+                    onChange={(event) => setEditRole(event.target.value)}
+                  />
+                  <input
+                    type="text"
+                    value={editDescription}
+                    onChange={(event) => setEditDescription(event.target.value)}
+                  />
+                  <button onClick={() => saveEditedUser(user.id)}>Save</button>
+                  <button onClick={cancelEdit}>Cancel</button>
+                </div>
+              ) : (
+                <div className="user-info">
+                  <div><strong>Name:</strong> {user.Name}</div>
+                  <div><strong>Age:</strong> {user.Age}</div>
+                  <div><strong>Role:</strong> {user.Role}</div>
+                  <div><strong>Description:</strong> {user.Description}</div>
+                </div>
               )}
-              <button className="delete-user-button" onClick={() => deleteUser(user.id)}>
-                Delete User
-              </button>
-              <button className="copy-user-info-button" onClick={() => copyUserInfo(user)}>
+              <div className="user-buttons">
+                <button className="increase-age-button" onClick={() => updateUser(user.id, user.Age)}>
+                  Increase Age
+                </button>
+                {editUserId !== user.id && (
+                  <button className="edit-user-button" onClick={() => editUser(user.id)}>
+                    Edit User
+                  </button>
+                )}
+                <button className="delete-user-button" onClick={() => deleteUser(user.id)}>
+                  Delete User
+                </button>
+                <button className="copy-user-info-button" onClick={() => copyUserInfo(user)}>
                   Copy {/* FontAwesome copy icon */}
                 </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

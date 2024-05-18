@@ -1,129 +1,131 @@
-/* Global Styles */
+/* Base styles for the app */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #f0f2f5;
   margin: 0;
   padding: 0;
 }
 
-.container {
-  max-width: 800px;
+.App {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-container,
+.user-container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-}
-
-/* Form Styles */
-.input-container {
-  margin: 2rem auto; /* Center-align the input container horizontally */
-  margin-bottom: 20px;
-  max-width: 15rem;
-  display: flex; /* Align inputs and button horizontally */
-  flex-direction: column; /* Align inputs and button vertically */
-  align-items: center; /* Center-align inputs and button horizontally */
-}
-
-.input-container label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input-container input[type="text"],
-.input-container input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.input-container button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.input-container button:hover {
-  background-color: #0056b3;
-}
-
-/* User Card Styles */
-.user-card {
-  background-color: #fff;
+  background: #fff;
   padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  max-width: 25rem;
-  margin: 0 auto; /* Center-align user cards horizontally */
+  margin: 10px;
 }
 
-.user-card:hover {
-  transform: translateY(-5px);
+/* Flexbox styles for desktop view */
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.user-container {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-height: 600px; /* Set a maximum height for the user container */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.user-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(50% - 10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .user-info {
-  margin-bottom: 10px;
-}
-
-.user-info strong {
-  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .user-buttons {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
-.user-buttons button {
-  padding: 8px 12px;
+/* Styles for inputs and buttons */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.increase-age-button {
-  background-color: #28a745;
+  font-size: 14px;
+  background-color: #007bff;
   color: #fff;
+  transition: background-color 0.3s;
 }
 
-.increase-age-button:hover {
-  background-color: #1c7430;
+button:hover {
+  background-color: #0056b3;
 }
 
-.edit-user-button {
-  background-color: #ffc107;
-  color: #fff;
-}
+/* Mobile view styles */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
 
-.edit-user-button:hover {
-  background-color: #d39e00;
-}
+  .input-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 
-.delete-user-button {
-  background-color: #dc3545;
-  color: #fff;
-}
+  .user-card {
+    width: 100%;
+  }
 
-.delete-user-button:hover {
-  background-color: #b02a37;
-}
+  .user-buttons {
+    flex-direction: row;
+  }
 
+  .user-buttons button {
+    margin-bottom: 10px;
+    width:8rem;
+  }
 
-h1 {
-  font-size: 24px;
-  color: #333; /* You can choose your preferred color */
-  margin-bottom: 20px;
-  text-align: center; /* Center-align the heading */
+  .user-buttons button:last-child {
+    margin-bottom: 10px;
+  }
 }
